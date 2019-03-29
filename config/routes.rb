@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     post '/users' => 'users#create'
 
     get '/events' => 'events#index'
+    get '/events/:id' => 'events#show'
   end
 end
