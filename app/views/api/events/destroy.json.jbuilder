@@ -1,0 +1,1 @@
+json.message 'This event has been removed from the database.'

@@ -6,4 +6,7 @@ class Event < ApplicationRecord
     Item.where(event_id: id)
   end
 
+  def images
+    Image.where(event_id: id)
+  end
 end

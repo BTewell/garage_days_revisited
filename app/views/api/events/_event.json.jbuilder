@@ -6,3 +6,4 @@ json.end_date event.end_date
 json.start_time event.start_time
 json.end_time event.end_time
 json.items event.items
+json.images event.images
