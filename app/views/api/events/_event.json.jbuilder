@@ -1,9 +1,10 @@
 json.id event.id
+json.title event.title
 json.address event.address
 json.details event.details
-json.start_date event.start_date
-json.end_date event.end_date
-json.start_time event.start_time
-json.end_time event.end_time
+json.start_date event.friendly_start_date
+json.end_date event.friendly_end_date
+json.start_time event.friendly_start_time
+json.end_time event.friendly_end_time
 json.items event.items
 json.images event.images

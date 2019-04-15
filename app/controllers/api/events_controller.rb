@@ -11,6 +11,7 @@ class Api::EventsController < ApplicationController
 
   def create
     @event = Event.new(
+      title: params[:title],
       address: params[:address],
       details: params[:details],
       start_date: params[:start_date],
@@ -25,6 +26,7 @@ class Api::EventsController < ApplicationController
   def update
     the_id = params[:id]
     @event = Event.find_by(id: the_id)
+    @event.title = params[:title] || @events.title
     @event.address = params[:address] || @event.address
     @event.details = params[:details] || @event.details
     @event.start_date = params[:start_date] || @event.start_date
