@@ -14,10 +14,4 @@ class Api::UsersController < ApplicationController
       render json: {errors: user.errors.full_messages}, status: :bad_request
     end
   end
-
-  def index
-    scraper = Scraper.new
-    raw_events = scraper.get_events
-    render json: raw_events
-  end
 end
