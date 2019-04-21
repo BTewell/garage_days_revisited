@@ -13,5 +13,11 @@ Rails.application.routes.draw do
     post '/events' => 'events#create'
     patch '/events/:id' => 'events#update'
     delete '/events/:id'=> 'events#destroy'
+
+    get '/items' => 'items#index'
+    get '/items/:id' => 'items#show'
+    post '/items' => 'items#create'
+    patch '/items/:id' => 'items#update'
+    delete '/items/:id'=> 'items#destroy'
   end
 end

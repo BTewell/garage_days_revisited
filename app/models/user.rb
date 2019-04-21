@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :items
+  has_many :events
   has_secure_password
   validates :user_name, presence: true, uniqueness: true
   validates :first_name, presence: true

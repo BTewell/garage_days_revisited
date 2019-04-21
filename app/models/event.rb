@@ -1,4 +1,5 @@
 class Event < ApplicationRecord
+  belongs to :user
   has_many :images
   has_many :items
 

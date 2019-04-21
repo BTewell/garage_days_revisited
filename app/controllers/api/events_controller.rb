@@ -1,5 +1,6 @@
 class Api::EventsController < ApplicationController
   before_action :authenticate_user
+  before_action :authenticate_event_host, except: [:index, :create, :show]
 
   def index
     @events = Event.all
@@ -19,7 +20,9 @@ class Api::EventsController < ApplicationController
       start_date: params[:start_date],
       end_date: params[:end_date],
       start_time: params[:start_time],
-      end_time: params[:end_time])
+      end_time: params[:end_time],
+      user_id: current_user.id
+      )
     @event.save
 
     render 'show.json.jbuilder'

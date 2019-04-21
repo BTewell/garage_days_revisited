@@ -26,6 +26,11 @@ class ApplicationController < ActionController::Base
       render json: "Please register or log in!", status: :unauthorized
     end
   end  
+  def authenticate_event_host
+    unless current_user === event.user_id
+      render json: "Please register or log in!", status: :unauthorized
+    end
+  end
 end
 
 
