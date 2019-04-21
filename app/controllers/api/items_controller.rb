@@ -1,4 +1,4 @@
-class ItemsController < ApplicationController
+class Api::ItemsController < ApplicationController
   before_action :authenticate_user
   before_action :authenticate_event_host, except: [:index, :create, :show]
   def index
