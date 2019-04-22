@@ -1,14 +1,13 @@
 class Api::ItemsController < ApplicationController
   before_action :authenticate_user
-  before_action :authenticate_event_host, except: [:index, :create, :show]
+  before_action :authenticate_item_owner, except: [:index, :create, :show]
   def index
     @items = Item.all
     render 'index.json.jbuilder'
   end
 
   def show
-    the_id = params[:id]
-    @item = Item.find_by(id: the_id)
+    @item = Item.find_by(id: params[:id])
     render 'show.json.jbuilder'
   end
 
@@ -20,7 +19,7 @@ class Api::ItemsController < ApplicationController
       event_id: params[:event_id],
       user_id: current_user.id
     )
-    if @product.save
+    if @item.save
       render 'show.json.jbuilder'
     else
       render 'errors.json.jbuilder', status: :unprocessible_entity
@@ -33,12 +32,17 @@ class Api::ItemsController < ApplicationController
     @item.name = params[:name] || @item.name
     @item.description = params[:description] || @item.description
     @item.price = params[:price] || @item.price
+    if @item.save
+      render 'show.json.jbuilder'
+    else
+      render "errors.json.jbuilder", status: :unprocessible_entity  
+    end
   end
 
   def destroy
     the_id = params[:id]
-    @event = Item.find_by(id: the_id)
-    @event.destroy
+    @item = Item.find_by(id: the_id)
+    @item.destroy
     render 'destroy.json.jbuilder'
   end
 end

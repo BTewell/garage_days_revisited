@@ -27,7 +27,14 @@ class ApplicationController < ActionController::Base
     end
   end  
   def authenticate_event_host
-    unless current_user === event.user_id
+    @event = Event.find_by(id: params[:id])
+    unless current_user.id == @event.user_id
+      render json: "Please register or log in!", status: :unauthorized
+    end
+  end
+  def authenticate_item_owner
+    @item = Item.find_by(id: params[:id])
+    unless current_user.id === @item.user_id
       render json: "Please register or log in!", status: :unauthorized
     end
   end

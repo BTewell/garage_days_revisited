@@ -23,24 +23,28 @@ class Api::EventsController < ApplicationController
       end_time: params[:end_time],
       user_id: current_user.id
       )
-    @event.save
-
-    render 'show.json.jbuilder'
+    if @event.save
+      render 'show.json.jbuilder'
+    else
+      render "errors.json.jbuilder", status: :unprocessible_entity  
+    end
   end
 
   def update
     the_id = params[:id]
     @event = Event.find_by(id: the_id)
-    @event.title = params[:title] || @events.title
+    @event.title = params[:title] || @event.title
     @event.address = params[:address] || @event.address
     @event.details = params[:details] || @event.details
     @event.start_date = params[:start_date] || @event.start_date
     @event.end_date = params[:end_date] || @event.end_date    
     @event.start_time = params[:start_time] || @event.start_time
     @event.end_time = params[:end_time] || @event.end_time
-    @event.save
-
-    render 'show.json.jbuilder'
+    if @event.save
+      render 'show.json.jbuilder'
+    else
+      render "errors.json.jbuilder", status: :unprocessible_entity  
+    end
   end
 
   def destroy
