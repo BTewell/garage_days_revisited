@@ -19,5 +19,8 @@ Rails.application.routes.draw do
     post '/items' => 'items#create'
     patch '/items/:id' => 'items#update'
     delete '/items/:id'=> 'items#destroy'
+
+    post '/images' => 'images#create'
+    delete '/images/:id' => 'images#destroy'
   end
 end

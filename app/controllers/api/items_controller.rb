@@ -27,8 +27,7 @@ class Api::ItemsController < ApplicationController
   end
 
   def update
-    the_id = params[:id]
-    @item = Item.find_by(id: the_id)
+    @item = Item.find_by(id: params[:id])
     @item.name = params[:name] || @item.name
     @item.description = params[:description] || @item.description
     @item.price = params[:price] || @item.price
@@ -40,8 +39,7 @@ class Api::ItemsController < ApplicationController
   end
 
   def destroy
-    the_id = params[:id]
-    @item = Item.find_by(id: the_id)
+    @item = Item.find_by(id: params[:id])
     @item.destroy
     render 'destroy.json.jbuilder'
   end
