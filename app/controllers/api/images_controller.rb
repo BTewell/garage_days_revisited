@@ -6,7 +6,7 @@ class Api::ImagesController < ApplicationController
       url: params[:url]
     )
     if @image.save
-      redirect_to 'api/items/show'
+      render json: @image
     else
       render 'errors.json.jbuilder', status: :unprocessible_entity
     end

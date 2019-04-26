@@ -8,3 +8,4 @@ json.start_time event.friendly_start_time
 json.end_time event.friendly_end_time
 json.items event.items
 json.images event.images
+json.user_id event.user_id
