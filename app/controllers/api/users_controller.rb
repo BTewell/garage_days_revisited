@@ -6,7 +6,7 @@ class Api::UsersController < ApplicationController
   end
 
   def create
-    user = User.new(
+    @user = User.new(
       user_name: params[:user_name],
       first_name: params[:first_name],
       last_name: params[:last_name],
@@ -14,7 +14,7 @@ class Api::UsersController < ApplicationController
       password: params[:password],
       password_confirmation: params[:password_confirmation]
       )
-    if user.save
+    if @user.save
       render 'show.json.jbuilder', status: :created
     else
       render 'errors.json.jbuilder', status: :bad_request
@@ -34,5 +34,10 @@ class Api::UsersController < ApplicationController
     else
       render 'errors.json.jbuilder', status: :bad_request
     end
+  end
+
+  def destroy
+    @user = User.find_by(id: current_user.id)
+    @user.destroy
   end
 end
